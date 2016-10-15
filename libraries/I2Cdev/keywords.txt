@@ -1,0 +1,34 @@
+
+
+readBit		KEYWORD2
+
+readBitW	KEYWORD2
+
+readBits	KEYWORD2
+
+readBitsW	KEYWORD2
+
+readByte	KEYWORD2
+
+readBytes	KEYWORD2
+
+readWord	KEYWORD2
+
+readWords	KEYWORD2
+
+writeBit	KEYWORD2
+
+writeBitW	KEYWORD2
+
+writeBits	KEYWORD2
+
+writeBitsW	KEYWORD2
+
+writeByte	KEYWORD2
+
+writeBytes	KEYWORD2
+
+writeWord	KEYWORD2
+
+writeWords	KEYWORD2
+
