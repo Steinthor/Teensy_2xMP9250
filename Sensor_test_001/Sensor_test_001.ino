@@ -923,7 +923,7 @@ void MPU9250SelfTest(float * destination) // Should return percent deviation fro
  
         }
 
-elapsedMicros sincePrint;
+//elapsedMicros sincePrint;
 
 
 void setup() {
@@ -990,8 +990,8 @@ void loop() {
     byte tempint = readByte(MPU9250_ADDRESS2, INT_STATUS);
     // If intPin goes high, all data registers have new data
   if (tempint & 0x01) {  // On interrupt, check if data ready interrupt
-    Serial.print("\ntime since last dataget: ");  Serial.print(sincePrint);
-    sincePrint = 0;
+//    Serial.print("\ntime since last dataget: ");  Serial.print(sincePrint);
+//    sincePrint = 0;
     readAccelData(accelCount);  // Read the x/y/z adc values
     getAres();
     
@@ -1019,7 +1019,7 @@ void loop() {
     mx = (float)magCount[0]*mRes*magCalibration[0] - magbias[0];  // get actual magnetometer value, this depends on scale being set
     my = (float)magCount[1]*mRes*magCalibration[1] - magbias[1];  
     mz = (float)magCount[2]*mRes*magCalibration[2] - magbias[2];   
-    Serial.print("\ntime it takes: ");  Serial.print(sincePrint);
+//    Serial.print("\ntime it takes: ");  Serial.print(sincePrint);
     Serial.print("\nax: "); Serial.print(ax); Serial.print(" ay: "); Serial.print(ay); Serial.print(" az: "); Serial.print(az);
     //Serial.print("\nselftest x gyro: "); Serial.print(readByte(MPU9250_ADDRESS2, SELF_TEST_X_GYRO));
     //Serial.print("\nselftest y gyro: "); Serial.print(readByte(MPU9250_ADDRESS2, SELF_TEST_Y_GYRO));
