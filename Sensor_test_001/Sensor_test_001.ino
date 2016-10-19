@@ -920,7 +920,7 @@ void MPU9250SelfTest(float * destination, uint8_t sensorAddress) // Should retur
  
         }
 
-elapsedMicros sincePrint;
+//elapsedMicros sincePrint;
 
 
 void setup() {
@@ -986,12 +986,20 @@ void loop() {
 
     byte tempint = readByte(MPU9250_ADDRESS_1, INT_STATUS);
     // If intPin goes high, all data registers have new data
+<<<<<<< HEAD
     if (tempint & 0x01) 
     {  // On interrupt, check if data ready interrupt
       Serial.print("\ntime since last dataget: ");  Serial.print(sincePrint);
       sincePrint = 0;
       readAccelData(accelCount, MPU9250_ADDRESS_1);  // Read the x/y/z adc values
       getAres();
+=======
+  if (tempint & 0x01) {  // On interrupt, check if data ready interrupt
+//    Serial.print("\ntime since last dataget: ");  Serial.print(sincePrint);
+//    sincePrint = 0;
+    readAccelData(accelCount);  // Read the x/y/z adc values
+    getAres();
+>>>>>>> refs/remotes/origin/master
     
       // Now we'll calculate the acceleration value into actual g's
       ax = (float)accelCount[0]*aRes; // - accelBias[0];  // get actual g value, this depends on scale being set
@@ -1012,6 +1020,7 @@ void loop() {
       magbias[1] = +120.;  // User environmental x-axis correction in milliGauss
       magbias[2] = +125.;  // User environmental x-axis correction in milliGauss
     
+<<<<<<< HEAD
       // Calculate the magnetometer values in milliGauss
       // Include factory calibration per data sheet and user environmental corrections
       mx = (float)magCount[0]*mRes*magCalibration[0] - magbias[0];  // get actual magnetometer value, this depends on scale being set
@@ -1023,6 +1032,19 @@ void loop() {
       //Serial.print("\nselftest y gyro: "); Serial.print(readByte(MPU9250_ADDRESS2, SELF_TEST_Y_GYRO));
       //Serial.print("\nselftest z gyro: "); Serial.print(readByte(MPU9250_ADDRESS2, SELF_TEST_Z_GYRO));
     }
+=======
+    // Calculate the magnetometer values in milliGauss
+    // Include factory calibration per data sheet and user environmental corrections
+    mx = (float)magCount[0]*mRes*magCalibration[0] - magbias[0];  // get actual magnetometer value, this depends on scale being set
+    my = (float)magCount[1]*mRes*magCalibration[1] - magbias[1];  
+    mz = (float)magCount[2]*mRes*magCalibration[2] - magbias[2];   
+//    Serial.print("\ntime it takes: ");  Serial.print(sincePrint);
+    Serial.print("\nax: "); Serial.print(ax); Serial.print(" ay: "); Serial.print(ay); Serial.print(" az: "); Serial.print(az);
+    //Serial.print("\nselftest x gyro: "); Serial.print(readByte(MPU9250_ADDRESS2, SELF_TEST_X_GYRO));
+    //Serial.print("\nselftest y gyro: "); Serial.print(readByte(MPU9250_ADDRESS2, SELF_TEST_Y_GYRO));
+    //Serial.print("\nselftest z gyro: "); Serial.print(readByte(MPU9250_ADDRESS2, SELF_TEST_Z_GYRO));
+  }
+>>>>>>> refs/remotes/origin/master
 
     
 }
