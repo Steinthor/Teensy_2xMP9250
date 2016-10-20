@@ -206,7 +206,7 @@ void MahonyQuaternionUpdate(float ax, float ay, float az, float gx, float gy, fl
 #define AK8963_ADDRESS 0x0C   //  Address of magnetometer
 
 #define AHRS false         // set to false for basic data read
-#define SerialDebug true   // set to true to get Serial output for debugging
+#define SerialDebug false   // set to true to get Serial output for debugging
 
 // Set initial input parameters
 enum Ascale {
@@ -1212,7 +1212,7 @@ void loop() {
   // This is ok by aircraft orientation standards!  
   // Pass gyro rate as rad/s
     MadgwickQuaternionUpdate(ax1, ay1, az1, gx1*PI/180.0f, gy1*PI/180.0f, gz1*PI/180.0f, my1, mx1, mz1, false);
-    MadgwickQuaternionUpdate(ax2, ay2, az2, gx2*PI/180.0f, gy2*PI/180.0f, gz2*PI/180.0f, my2, mx2, mz2, false);
+    MadgwickQuaternionUpdate(ax2, ay2, az2, gx2*PI/180.0f, gy2*PI/180.0f, gz2*PI/180.0f, my2, mx2, mz2, true);
   //  MahonyQuaternionUpdate(ax2, ay2, az2, gx2*PI/180.0f, gy2*PI/180.0f, gz2*PI/180.0f, my2, mx2, mz2, false);
 
     if (!AHRS) {
@@ -1371,7 +1371,9 @@ void loop() {
     z[3] = -q01[0]*q02[3] - q01[1]*q02[2] + q01[2]*q02[1] - q01[3]*q02[0];
 
     angle = 2*acos(z[0]);
-    Serial.print("\nangle: "); Serial.print(angle);
+    //Serial.print("\nAngle: "); Serial.print(angle);
+    Serial.print("\n"); Serial.print(q01[0]); Serial.print(" "); Serial.print(q01[1]); Serial.print(" "); Serial.print(q01[2]); Serial.print(" "); Serial.print(q01[3]); Serial.print(" ");
+    Serial.print(q02[0]); Serial.print(" "); Serial.print(q02[1]); Serial.print(" "); Serial.print(q02[2]); Serial.print(" "); Serial.print(q02[3]);
 }
 
 
